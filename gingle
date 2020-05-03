@@ -1,0 +1,23 @@
+#!/bin/bash
+rm -rf gingle_temp
+# abort on errors
+set -e
+
+# create new directory
+mkdir gingle_temp
+
+#copy vimrc to new directory
+cp $1 gingle_temp
+
+# navigate into new directory
+cd gingle_temp
+
+git init
+git add -A 
+git commit -m 'deploy via gingle'
+
+git push -f git@github.com:Divepit/$2.git master
+
+cd ..
+
+rm -rf gingle_temp
